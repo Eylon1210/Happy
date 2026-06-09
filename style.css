@@ -1,0 +1,318 @@
+:root {
+  --pink: #ff8fbe;
+  --hot: #ff3d91;
+  --soft: #ffd6e7;
+  --ink: #111018;
+  --white: #fff7fb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #ffb3cf;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  color: var(--white);
+}
+
+.reel {
+  position: relative;
+  width: min(100vw, 576px);
+  min-height: 100svh;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  padding: clamp(20px, 4vw, 34px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(24px, 5svh, 56px);
+  background:
+    radial-gradient(circle at 30% 12%, rgba(255, 255, 255, 0.85), transparent 10%),
+    radial-gradient(circle at 76% 18%, rgba(255, 255, 255, 0.55), transparent 12%),
+    linear-gradient(160deg, #ff7cad 0%, #ffb1d1 45%, #ffe1ec 100%);
+  isolation: isolate;
+}
+
+.pink-sky,
+.hearts,
+.glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.pink-sky {
+  z-index: -1;
+}
+
+.glow {
+  width: 38%;
+  height: 22%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.42);
+  filter: blur(28px);
+  animation: shimmer 5s ease-in-out infinite alternate;
+}
+
+.glow-a {
+  left: -8%;
+  top: 7%;
+}
+
+.glow-b {
+  right: -10%;
+  top: 42%;
+  animation-delay: -1.8s;
+}
+
+.glow-c {
+  left: 28%;
+  bottom: -8%;
+  animation-delay: -3s;
+}
+
+.heart {
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  left: var(--x);
+  bottom: -12%;
+  transform: rotate(45deg);
+  background: rgba(255, 255, 255, 0.58);
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+  animation: floatHeart var(--speed) linear infinite;
+  animation-delay: var(--delay);
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: inherit;
+}
+
+.heart::before {
+  left: -50%;
+}
+
+.heart::after {
+  top: -50%;
+}
+
+.stage-card {
+  position: relative;
+  align-self: center;
+  width: min(100%, 80vw, 462px);
+  min-height: clamp(800px, 74svh, 1000px);
+  border-radius: 30px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 64, 145, 0.24), transparent 30%),
+    linear-gradient(180deg, #17131d, #060509 76%);
+  box-shadow:
+    0 32px 80px rgba(82, 21, 48, 0.42),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+#loveCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.photo-cloud {
+  position: absolute;
+  inset: 0;
+}
+
+.photo {
+  position: absolute;
+  width: clamp(54px, 14vw, 88px);
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 3px solid rgba(255, 255, 255, 0.92);
+  border-radius: 16px;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.38);
+  animation: photoFloat 4.8s ease-in-out infinite;
+}
+
+.photo-1 {
+  left: 7%;
+  top: 14%;
+  transform: rotate(-11deg);
+}
+
+.photo-2 {
+  right: 7%;
+  top: 14%;
+  transform: rotate(9deg);
+  animation-delay: -0.8s;
+}
+
+.photo-3 {
+  left: 4%;
+  top: 42%;
+  transform: rotate(8deg);
+  animation-delay: -1.3s;
+}
+
+.photo-4 {
+  right: 4%;
+  top: 42%;
+  transform: rotate(-8deg);
+  animation-delay: -2.1s;
+}
+
+.photo-5 {
+  left: 9%;
+  bottom: 13%;
+  transform: rotate(-5deg);
+  animation-delay: -2.8s;
+}
+
+.photo-6 {
+  right: 9%;
+  bottom: 13%;
+  transform: rotate(7deg);
+  animation-delay: -3.4s;
+}
+
+.photo-7 {
+  left: 50%;
+  bottom: 5%;
+  transform: translateX(-50%) rotate(3deg);
+  animation-delay: -1.7s;
+}
+
+.love-words {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.love-words span {
+  position: absolute;
+  padding: 5px 9px;
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(255, 83, 151, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 0 18px rgba(255, 79, 154, 0.22);
+  font-size: clamp(0.66rem, 2.2vw, 0.82rem);
+  font-weight: 760;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  animation: wordPulse 8s ease-in-out infinite;
+}
+
+.love-words span:nth-child(1) {
+  left: 50%;
+  top: 25%;
+  transform: translateX(-50%);
+}
+
+.love-words span:nth-child(2) {
+  left: 11%;
+  top: 59%;
+  animation-delay: 2s;
+}
+
+.love-words span:nth-child(3) {
+  right: 11%;
+  top: 59%;
+  animation-delay: 4s;
+}
+
+.love-words span:nth-child(4) {
+  left: 50%;
+  bottom: 24%;
+  width: max-content;
+  max-width: 78%;
+  transform: translateX(-50%);
+  animation-delay: 6s;
+}
+
+@keyframes floatHeart {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(45deg) scale(0.7);
+  }
+  12% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--drift), -118svh, 0) rotate(45deg) scale(1.24);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    transform: translateY(-12px) scale(0.95);
+  }
+  to {
+    transform: translateY(16px) scale(1.12);
+  }
+}
+
+@keyframes photoFloat {
+  0%,
+  100% {
+    margin-top: 0;
+  }
+  50% {
+    margin-top: -13px;
+  }
+}
+
+@keyframes wordPulse {
+  0%,
+  14% {
+    opacity: 0;
+    filter: blur(2px);
+  }
+  24%,
+  38% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  52%,
+  100% {
+    opacity: 0;
+    filter: blur(2px);
+  }
+}
+
+@media (min-width: 700px) {
+  body {
+    min-height: 100vh;
+    background: #25101a;
+  }
+
+  .reel {
+    min-height: min(100vh, 1024px);
+    max-height: 1024px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12), 0 30px 90px rgba(0, 0, 0, 0.35);
+  }
+}
+
+@media (max-height: 820px) {
+  .stage-card {
+    min-height: 68svh;
+  }
+}
